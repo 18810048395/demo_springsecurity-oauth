@@ -1,0 +1,18 @@
+server:
+  port: 8080
+spring:
+  # freemarker配置
+  freemarker:
+    settings:
+      classic_compatible: true #处理空值
+      datetime_format: yyy-MM-dd HH:mm
+      number_format: 0.##
+    suffix: .ftl
+    template-loader-path:
+      - classpath:/templates
+  #数据库连接配置
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.100.10:3306/demo_springsecurity?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: root
