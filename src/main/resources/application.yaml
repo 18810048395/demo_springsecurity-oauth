@@ -1,16 +1,16 @@
 server:
   port: 8080
 spring:
-  # freemarkerÅäÖÃ
+  # freemarkeré…ç½®
   freemarker:
     settings:
-      classic_compatible: true #´¦Àí¿ÕÖµ
+      classic_compatible: true #å¤„ç†ç©ºå€¼
       datetime_format: yyy-MM-dd HH:mm
       number_format: 0.##
     suffix: .ftl
     template-loader-path:
       - classpath:/templates
-  #Êı¾İ¿âÁ¬½ÓÅäÖÃ
+  #æ•°æ®åº“è¿æ¥é…ç½®
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://192.168.100.10:3306/demo_springsecurity?characterEncoding=utf-8&useSSL=false

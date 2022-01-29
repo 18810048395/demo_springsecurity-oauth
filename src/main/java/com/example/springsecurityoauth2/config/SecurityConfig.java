@@ -4,12 +4,12 @@ import com.example.springsecurityoauth2.dao.PermissionMapper;
 import com.example.springsecurityoauth2.pojo.PermissionEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -20,10 +20,19 @@ import java.util.List;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    @Autowired
     private MemberDetailsService memberDetailsService;
 
     @Autowired
     private PermissionMapper permissionMapper;
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
 
 
     @Override
@@ -46,6 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 可以允许hello,loginPage 不被拦截
         .antMatchers("/hello").permitAll()
         .antMatchers("/toLogin").permitAll()
+        .antMatchers("/oauth/*").permitAll()
         .antMatchers("/**").fullyAuthenticated()
                 // 设置登录相关配置 (默认登陆页面地址是/login,默认的登出页面地址是/logout)
                 .and().formLogin().loginPage("/toLogin")
@@ -65,11 +75,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                                       .authorities("showMember");
 
         // 将上面通过内存添加用户名密码，改为动态查询数据库设置
-        auth.userDetailsService(memberDetailsService).passwordEncoder(passwordEncoder());
+        auth.userDetailsService(memberDetailsService).passwordEncoder(passwordEncoder);
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+
 }
