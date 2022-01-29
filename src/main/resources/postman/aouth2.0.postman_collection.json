@@ -1,0 +1,205 @@
+{
+	"info": {
+		"_postman_id": "a5f9ea2e-2676-475f-ba6c-ce81a7f9f018",
+		"name": "aouth2.0",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取授权码",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/authorize?client_id=client_yh&response_type=code",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "client_yh"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						}
+					]
+				},
+				"description": "通过浏览器请求拿到code授权码"
+			},
+			"response": []
+		},
+		{
+			"name": "授权码模式获取token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?code=3Tw7Sj&grant_type=authorization_code&redirect_uri=http://localhost:8080/hello&scope=yh:scope&client_id=client_yh&client_secret=123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "3Tw7Sj"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8080/hello"
+						},
+						{
+							"key": "scope",
+							"value": "yh:scope"
+						},
+						{
+							"key": "client_id",
+							"value": "client_yh"
+						},
+						{
+							"key": "client_secret",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "密码模式获取token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?grant_type=password&redirect_uri=http://localhost:8080/hello&client_id=client_yh&client_secret=123456&username=xiaohei&password=123456",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "password"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:8080/hello"
+						},
+						{
+							"key": "client_id",
+							"value": "client_yh"
+						},
+						{
+							"key": "client_secret",
+							"value": "123456"
+						},
+						{
+							"key": "username",
+							"value": "xiaohei"
+						},
+						{
+							"key": "password",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "检查token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/check_token?token=eb51fcca-ef5d-4fc5-afb6-55c44dbf27dc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"check_token"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eb51fcca-ef5d-4fc5-afb6-55c44dbf27dc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "刷新token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/oauth/token?grant_type=refresh_token&client_id=client_yh&client_secret=123456&refresh_token=ce95f0f4-8d2c-47b2-8620-aa6ec778485d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"oauth",
+						"token"
+					],
+					"query": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token"
+						},
+						{
+							"key": "client_id",
+							"value": "client_yh"
+						},
+						{
+							"key": "client_secret",
+							"value": "123456"
+						},
+						{
+							"key": "refresh_token",
+							"value": "ce95f0f4-8d2c-47b2-8620-aa6ec778485d"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
