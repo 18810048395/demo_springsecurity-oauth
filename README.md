@@ -1,5 +1,7 @@
 # demo_springsecurity-oauth2
 
+框架技术：springsecurity oauth2 jwt
+
 ##默认用户:
          yanghe/123456  
          xiaohei/123456
@@ -39,4 +41,6 @@
    令牌刷新：
             http://localhost:8080/oauth/token?grant_type=refresh_token&client_id=client_yh&client_secret=123456&refresh_token=ce95f0f4-8d2c-47b2-8620-aa6ec778485d                    
 
+#jwt
+   使用jwt作为token转换器，并将用户信息也加入到token中可用于拓展
            

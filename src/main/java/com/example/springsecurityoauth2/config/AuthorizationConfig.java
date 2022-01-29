@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.E
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.JdbcTokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 import javax.sql.DataSource;
 
@@ -33,6 +34,9 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
 
 
 
@@ -75,7 +79,9 @@ public class AuthorizationConfig extends AuthorizationServerConfigurerAdapter {
                 // 密码模式必须配置authenticationManager,否则会不支持密码模式
                 .authenticationManager(authenticationManager)
                  // 刷新token时必须设置userDetailsService,否则刷新时会报错
-                .userDetailsService(memberDetailsService);
+                .userDetailsService(memberDetailsService)
+                // 配置token转换器，将token转换为jwt
+                .accessTokenConverter(jwtAccessTokenConverter);
     }
 
     /**
