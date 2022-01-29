@@ -1,5 +1,7 @@
 # demo_springsecurity-oauth2
 
+##本demo作为认证服务器实现，资源服务器请见demo_springsecurity_resource自行下载
+
 框架技术：springsecurity oauth2 jwt
 
 ##默认用户:
